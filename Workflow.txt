@@ -1,0 +1,40 @@
+	LEO orbits estimation
+
+LEO 
+
+Workflow:
+
+1. Jupiter notebook
+	a. Chiedere input utente numero piani orbitali
+					inclinazione
+					numero satelliti per piano orbitale
+	b. Calcolo Omega0 -> per ogni piano orbitale
+			     piani orbitali equispaziati su 180°
+	c. Calcolo M0 -> per ogni satellite
+		         devono essere sfasati "a scacchiera"
+	d. Produzione 1 almanac in txt per ogni satellite compreso di:
+		0. ID(numero piano orbitale, numero satellite) -> generato
+		i. Raggio piano orbitale -> fissato
+		ii. Inclinazione piano orbitale i0 -> input utente
+		iii. Omega0 -> calcolato
+		iv. M0 -> calcolato
+		v. GMe = 3.986005D+14 (m3/s2)
+		vi. OmegaEdot = 7.2921151467D-05 (radians)
+	e. Scaricare tutti gli almanac in cartella compressa
+	
+2. Matlab script computation
+	a. Caricare gli almanacchi di tutti i satelliti
+	b. Inizializzare vettore epoch
+	c. Calcolo posizione in ORS
+	d. Calcolo posizione in ITRF
+	e. Plot basemap
+
+NOTE:
+
+- Consideriamo le orbite circolari -> e = 0
+- Calcolo posizione ogni satellite in ogni secondo di una giornata, da mezzanotte a mezzanotte -> 86400 epoche
+- NB: usare ATAN2 per la tangente
+- M0 è funzione di n satelliti per orbita e n piani orbitali
+- OmegaDot, iDot vanno trascurati
+- Omega0(piano orbitale 1) = 0
+- M0(satellite 1) = 0
