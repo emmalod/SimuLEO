@@ -1,13 +1,13 @@
 	LEO orbits estimation
 
-LEO 
+LEO : Low Earth orbit
 
 Workflow:
 
 1. Jupiter notebook
 	a. Chiedere input utente numero piani orbitali
-					inclinazione
-					numero satelliti per piano orbitale
+				 inclinazione piani orbitali
+				 numero satelliti per piano orbitale
 	b. Calcolo Omega0 -> per ogni piano orbitale
 			     piani orbitali equispaziati su 180°
 	c. Calcolo M0 -> per ogni satellite
