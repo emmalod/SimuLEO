@@ -30,7 +30,6 @@ Workflow:
 	e. Plot basemap
 
 NOTE:
-
 - Consideriamo le orbite circolari -> e = 0
 - Calcolo posizione ogni satellite in ogni secondo di una giornata, da mezzanotte a mezzanotte -> 86400 epoche
 - NB: usare ATAN2 per la tangente
