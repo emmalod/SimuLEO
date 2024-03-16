@@ -37,3 +37,14 @@ NOTE:
 - OmegaDot, iDot vanno trascurati
 - Omega0(piano orbitale 1) = 0
 - M0(satellite 1) = 0
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+16/03/24
+--> numero almanacs= numero piani orbitali * numero satelliti--> facciamo girare tutto in matlab , poi su jupyter groundtracks a scelta dell'utente  
+--> produzione almanac:
+    r
+    M0
+    OMEGA0 
+    i0 
+    (GMe , OmegaEDot)
