@@ -48,3 +48,8 @@ NOTE:
     OMEGA0 
     i0 
     (GMe , OmegaEDot)
+
+es. ID = LEO 0105
+
+DOMANDE:
+- Quanti satelliti/piani orbitali massimi?
