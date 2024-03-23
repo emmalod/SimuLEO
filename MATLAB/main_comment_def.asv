@@ -25,7 +25,7 @@ t = [t_0:D_t:t_end];
 
 % Define the folder path where your text files are located
 InputFolderPath = 'C:\Users\emmal\Documents\GitHub\SimuLEO\Almanacs040352';
-OutputFolderPath = 'C:\Users\emmal\Documents\GitHub\SimuLEO\Almanacs040352\SatellitePositions';
+OutputFolderPath = 'C:\Users\emmal\Documents\GitHub\SimuLEO\SatellitePositions';
 
 % List all files in the folder
 files = dir(fullfile(InputFolderPath, '*.txt'));
@@ -33,15 +33,14 @@ files = dir(fullfile(InputFolderPath, '*.txt'));
 % Loop through each file in the folder
 for i = 1:length(files)
     % Get the file name
-    InputFileName = files(i).name;
+    FileName = files(i).name;
     
     % Create the full file path
-    InputFilePath = fullfile(InputFolderPath, InputFileName);
+    FilePath = fullfile(FolderPath, FileName);
     
-    [OrbitRadius,OrbitInclination,M0,Omega0] = ReadData(InputFilePath);
-    [ITRF_geod] = ITRF_positions(t,t_0,t_end,D_t,OrbitRadius,OrbitInclination,M0,Omega0);
-    SavePositions(ITRF_geod, InputFileName, OutputFolderPath);
-
+    [OrbitRadius,OrbitInclination,M0,Omega0] = ReadData(FilePath)
+    [ITRF_geod] = ITRF_positions(t,t_0,t_end,D_t,OrbitRadius,OrbitInclination,M0,Omega0)
+   
 end
 
 
