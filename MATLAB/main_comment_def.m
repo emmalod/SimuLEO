@@ -40,13 +40,18 @@ for i = 1:length(files)
     % Create the full file path
     InputFilePath = fullfile(InputFolderPath, InputFileName);
     
+    % Read data
     [OrbitRadius,OrbitInclination,M0,Omega0] = ReadData(InputFilePath);
+
+    % Compute ITRF positions each second of the day
     [ITRF_geod] = ITRF_positions(t,t_0,t_end,D_t,OrbitRadius,OrbitInclination,M0,Omega0);
+
+    % Save position matrix in a txt file in the output folder
     SavePositions(ITRF_geod, InputFileName, OutputFolderPath);
 
 end
 
-%% 4. Plot satellite's daily trajectory with basemap
+%% Plot satellite's daily trajectory with basemap
 figure(1);
 
 % H = subplot(m,n,p), or subplot(mnp), breaks the Figure window
