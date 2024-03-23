@@ -15,16 +15,13 @@ clc
 
 set(0,'DefaultFigureWindowStyle','docked');
 
-%% Load
-load('C:\Users\emmal\Documents\GitHub\SimuLEO\Almanacs040545\LEO0205.txt');
-
-%% Load almanac
+%% Load Almanac
 
 % Define the folder path where your text files are located
-folderPath = 'C:\Users\emmal\Documents\GitHub\SimuLEO\Almanacs040540'; 
+folderPath = 'C:\Users\emmal\Documents\GitHub\SimuLEO\Almanacs040352'; 
 
 % Define the file name
-fileName = 'LEO0101.txt';
+fileName = 'LEO0203.txt';
 
 % Create the full file path using fullfile
 filePath = fullfile(folderPath, fileName);
@@ -40,8 +37,8 @@ Omega0 = data{4, 2};
 
 % Display extracted variables
 %disp(satelliteName);
-disp(orbitRadius);
-disp(orbitInclination);
+disp(OrbitRadius);
+disp(OrbitInclination);
 disp(M0);
 disp(Omega0);
 
