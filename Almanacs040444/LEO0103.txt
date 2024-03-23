@@ -1,0 +1,5 @@
+SatelliteName LEO0103
+OrbitRadius 8500
+OrbitInclination 44
+M0 180.0
+Omega0 0.0

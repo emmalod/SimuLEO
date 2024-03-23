@@ -9,23 +9,25 @@
 % References:
 %    
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 clear
 close all
 clc
 
 set(0,'DefaultFigureWindowStyle','docked');
 
-%% 0. Initialize vector of epochs 
+%% Initialize vector of epochs
+
 t_0 = 0; %[sec]
 t_end = 24*3600; %[sec]
 D_t = 1; %[sec]
-t = [t_0:D_t:t_end];
+t = t_0:D_t:t_end;
 
-%% Ciclo for
+%% Read data from txt files and compute position for each second in a day for each satellite
 
 % Define the folder path where your text files are located
-InputFolderPath = 'C:\Users\emmal\Documents\GitHub\SimuLEO\Almanacs040352';
-OutputFolderPath = 'C:\Users\emmal\Documents\GitHub\SimuLEO\Almanacs040352\SatellitePositions';
+InputFolderPath = 'C:\Users\emmal\Documents\GitHub\SimuLEO\Almanacs040444';
+OutputFolderPath = 'C:\Users\emmal\Documents\GitHub\SimuLEO\SatellitePositions040444';
 
 % List all files in the folder
 files = dir(fullfile(InputFolderPath, '*.txt'));
@@ -43,29 +45,6 @@ for i = 1:length(files)
     SavePositions(ITRF_geod, InputFileName, OutputFolderPath);
 
 end
-
-
-%% output
-
-% Define the folder path where you want to save the output files
-outputFolderPath = 'C:\Users\YourUsername\Documents\SatellitePositions'; % Update this with your desired folder path
-
-% Loop through each satellite data
-for i = 1:length(satelliteData)
-    % Extract satellite information
-    satelliteName = satelliteData(i).SatelliteName;
-    % Assuming you have calculated the position matrix for each second of a day and stored it in a variable called 'positionMatrix'
-    
-    % Define the file name for the output text file
-    fileName = strcat(satelliteName, '.txt');
-    
-    % Create the full file path
-    filePath = fullfile(outputFolderPath, fileName);
-    
-    % Save the position matrix to a text file
-    dlmwrite(filePath, positionMatrix, 'delimiter', '\t');
-end
-
 
 %% 4. Plot satellite's daily trajectory with basemap
 figure(1);

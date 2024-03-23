@@ -1,0 +1,5 @@
+SatelliteName LEO0201
+OrbitRadius 8500
+OrbitInclination 44
+M0 22.5
+Omega0 45.0
