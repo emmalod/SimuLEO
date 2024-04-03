@@ -1,3 +1,16 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Geoinformatics Project - Positioning and Location Based Services
+% A.A. 2023/2024
+%
+% Input: 
+% [x,y,z]       --> cartesian coordinates of the interest point
+% 
+% Output: 
+% [Phi,Lambda,h]--> geodethic coordinates of the interest point
+%
+% This function transforms the coordinates from cartesian to geodethic,
+% receiving as input the cartesian coordinates of the point of interest 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function[Phi,Lambda,h] = Cart2Geod(X,Y,Z) 
 %computation of some auxiliar quantities  
 r = sqrt(X^2 + Y^2); 

@@ -1,3 +1,22 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Geoinformatics Project - Positioning and Location Based Services
+% A.A. 2023/2024
+% 
+% Input:
+% t         --> vector of times
+% t_0       --> starting time 
+% t_end     --> ending time 
+% D_t       --> time discretization step 
+% r         --> orbit radius
+% o_i       --> orbit inclination 
+% M0        --> mean anomaly
+% Omega0    --> starting rigth ascension of the ascending node 
+% Output: 
+% ITRF_geod --> coordinates of the point of interest in ITRF geodethic 
+%   
+% This function manages the conversion of a point from the Orbital Reference
+% System to the ITRF geodethic 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function [ITRF_geod] = ITRF_positions(t,t_0,t_end,D_t,r,o_i,M0,Omega0)
 
 % This function computes the ITRF positions in each second for each
