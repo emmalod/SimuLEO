@@ -24,11 +24,11 @@ function [ITRF_geod] = ITRF_positions(t,t_0,t_end,D_t,r,o_i,M0,Omega0)
         % compute M_t
            M_t = M0 + n*Dt;
         % compute W(t)
-           W(i)= Omega0-OmegaEdot*Dt;
+           W(i)= Omega0 - OmegaEdot*Dt;
         % compute x(t)
-           x_t(i) = r*M_t;          
+           x_t(i) = r*cos(M_t);          
         % compute y(t)
-           y_t(i) = r*M_t;
+           y_t(i) = r*sin(M_t);
         i = i+1;
     end
 
@@ -40,7 +40,7 @@ function [ITRF_geod] = ITRF_positions(t,t_0,t_end,D_t,r,o_i,M0,Omega0)
     ITRF = zeros(length(t), 3);
     ITRF_geod = zeros(length(t), 3);
     
-    for i=1:length(t)
+    for i = 1:length(t)
         
         R1 = [1 0 0 ; 0 cos(o_i) -sin(o_i); 0 sin(o_i) cos(o_i)];    % o_i = OrbitInclination
         R31 = [cos(W(i)) -sin(W(i)) 0; sin(W(i)) cos(W(i)) 0; 0 0 1];

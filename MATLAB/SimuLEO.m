@@ -51,6 +51,14 @@ for i = 1:length(files)
 
 end
 
+%% esempio
+
+subplot(1,2,1);
+plot(ITRF_geod(1:1000:end,1)*180/pi, 'o')
+subplot(1,2,2);
+plot(ITRF_geod(1:1000:end,2)*180/pi, 'o')
+
+
 %% Plot satellite's daily trajectory with basemap
 figure(1);
 
@@ -79,7 +87,7 @@ xlabel('seconds in one day (00:00 - 23:59 = 86400 sec)');
 ylabel('[km]');
 xlim([1 t(end)]);
 
-%Print results on a file
+%% Print results on a file
 fid = fopen('GPS_KeplerianOrbit_6parameters.txt','w');
 
 fprintf(fid,'EXPORT FROM MATLAB: GPS_orbit_est.m \n\n');
