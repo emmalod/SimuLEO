@@ -17,7 +17,7 @@
 % This function manages the conversion of a point from the Orbital Reference
 % System to the ITRF geodethic 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function [ITRF_geod] = ITRF_positions(t,t_0,t_end,D_t,r,o_i,M0,Omega0)
+function [ITRF_geod, ORS, ICRS] = ITRF_positions(t,t_0,t_end,D_t,r,o_i,M0,Omega0)
 
 % This function computes the ITRF positions in each second for each
 % satellite
@@ -58,23 +58,27 @@ function [ITRF_geod] = ITRF_positions(t,t_0,t_end,D_t,r,o_i,M0,Omega0)
     
     ITRF = zeros(length(t), 3);
     ITRF_geod = zeros(length(t), 3);
-    
+    ICRS = zeros(length(t), 3);
+
     for i = 1:length(t)
         
         R1 = [1 0 0 ; 0 cos(o_i) -sin(o_i); 0 sin(o_i) cos(o_i)];    % o_i = OrbitInclination
         R31 = [cos(W(i)) -sin(W(i)) 0; sin(W(i)) cos(W(i)) 0; 0 0 1];
         R32 = [1 0 0; 0 1 0; 0 0 1];
         R = R31*R1*R32;
-    
-        % Suppose that the ORS could be seen as a LL RS
-        X_LL = ORS(i, :); 
+ 
+        X_ORS = ORS(i, :);
+        X_ICRS = R*X_ORS';
+        ICRS(i,:) = X_ICRS;
 
-        % Transform the LL RS in the LC RS (from ORS to ICRS) with the rotation matrix
-        X_LC = R*X_LL'; 
-        ITRF(i, :) = X_LC';
+        %R1 = [1 0 0 ; 0 cos(o_i) -sin(o_i); 0 sin(o_i) cos(o_i)];    % o_i = OrbitInclination
+        %R2 = [cos(W(i)) -sin(W(i)) 0; sin(W(i)) cos(W(i)) 0; 0 0 1];
+        R3 = [1 0 0; 0 1 0; 0 0 1];
+
+        ITRF(i, :) = X_ICRS';
     
         % From Local cartesian to Geodetic 
-        [lat, lon, h] = Cart2Geod(X_LC(1),X_LC(2),X_LC(3));
+        [lat, lon, h] = Cart2Geod(X_ICRS(1),X_ICRS(2),X_ICRS(3));
         ITRF_geod(i, :) = [lat, lon, h];
         
     end 

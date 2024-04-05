@@ -16,13 +16,6 @@ clc
 
 set(0,'DefaultFigureWindowStyle','docked');
 
-%% Initialize vector of epochs
-
-t_0 = 0; %[sec]
-t_end = 24*3600; %[sec]
-D_t = 1; %[sec]
-t = t_0:D_t:t_end;
-
 %% Read data from txt files and compute position for each second in a day for each satellite
 
 % Define the folder path where your text files are located
@@ -31,6 +24,12 @@ OutputFolderPath = 'C:\Users\emmal\Documents\GitHub\SimuLEO\SatellitePositions04
 
 % List all files in the folder
 files = dir(fullfile(InputFolderPath, '*.txt'));
+
+% Initialize vector of epochs
+t_0 = 0; %[sec]
+t_end = 24*3600; %[sec]
+D_t = 1; %[sec]
+t = t_0:D_t:t_end;
 
 % Loop through each file in the folder
 for i = 1:length(files)
@@ -44,7 +43,7 @@ for i = 1:length(files)
     [OrbitRadius,OrbitInclination,M0,Omega0] = ReadData(InputFilePath);
 
     % Compute ITRF positions each second of the day
-    [ITRF_geod] = ITRF_positions(t,t_0,t_end,D_t,OrbitRadius,OrbitInclination,M0,Omega0);
+    [ITRF_geod, ORS, ICRS] = ITRF_positions(t,t_0,t_end,D_t,OrbitRadius,OrbitInclination,M0,Omega0);
 
     % Save position matrix in a txt file in the output folder
     SavePositions(ITRF_geod, InputFileName, OutputFolderPath);
@@ -101,6 +100,12 @@ fprintf(fid, '\n');
 fclose(fid);        %or fclose('all');
 
 save solution2.mat
+
+%% Txt converter
+
+Data = load('ORS.mat');
+DataField = fieldnames(Data);
+writematrix('ORS.txt', Data.(DataField{1}));
 
 
 
