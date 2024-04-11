@@ -1,3 +1,5 @@
+function [OrbitRadius,OrbitInclination,M0,Omega0] = ReadData(files_path)
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Geoinformatics Project - Positioning and Location Based Services
 % A.A. 2023/2024
@@ -16,7 +18,7 @@
 % and extracts from it the orbit radius, the
 % orbit inclination,the M0 and the Omega0.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function [OrbitRadius,OrbitInclination,M0,Omega0] = ReadData(files_path)
+
     data = readtable(files_path);
     
     % Extract variables
