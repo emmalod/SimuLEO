@@ -1,3 +1,5 @@
+function [ITRF_geod, ORS, ICRS, ITRF] = ITRF_positions(t,t_0,t_end,D_t,r,o_i,M0,Omega0)
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Geoinformatics Project - Positioning and Location Based Services
 % A.A. 2023/2024
@@ -17,10 +19,6 @@
 % This function manages the conversion of a point from the Orbital Reference
 % System to the ITRF geodethic 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function [ITRF_geod, ORS, ICRS] = ITRF_positions(t,t_0,t_end,D_t,r,o_i,M0,Omega0)
-
-% This function computes the ITRF positions in each second for each
-% satellite
     
     % Inizialize constants
     OmegaEdot = 7.2921151467e-05; %(radians)
@@ -32,6 +30,7 @@ function [ITRF_geod, ORS, ICRS] = ITRF_positions(t,t_0,t_end,D_t,r,o_i,M0,Omega0
     x_t = zeros(1,length(t));
     y_t = zeros(1,length(t));
     W = zeros(1,length(t));
+    W_E = zeros(1,length(t));
     ORS = zeros(length(t), 3);
     
     % Compute the mean angular velocity
@@ -48,6 +47,8 @@ function [ITRF_geod, ORS, ICRS] = ITRF_positions(t,t_0,t_end,D_t,r,o_i,M0,Omega0
            x_t(i) = r*cos(M_t);          
         % compute y(t)
            y_t(i) = r*sin(M_t);
+        % compute W_E(t) -> GAST
+           W_E(i) = -OmegaEdot * Dt;
         i = i+1;
     end
 
@@ -71,14 +72,19 @@ function [ITRF_geod, ORS, ICRS] = ITRF_positions(t,t_0,t_end,D_t,r,o_i,M0,Omega0
         X_ICRS = R*X_ORS';
         ICRS(i,:) = X_ICRS;
 
-        %R1 = [1 0 0 ; 0 cos(o_i) -sin(o_i); 0 sin(o_i) cos(o_i)];    % o_i = OrbitInclination
+        %R1 = [1 0 0 ; 0 cos(o_i) -sin(o_i); 0 sin(o_i) cos(o_i)];
         %R2 = [cos(W(i)) -sin(W(i)) 0; sin(W(i)) cos(W(i)) 0; 0 0 1];
-        R3 = [1 0 0; 0 1 0; 0 0 1];
+        
+        R1 = [1 0 0 ; 0 1 0; 0 0 1];
+        R2 = [1 0 0 ; 0 1 0; 0 0 1];
+        R3 = [cos(W_E(i)) -sin(W_E(i)) 0; sin(W_E(i)) cos(W_E(i)) 0; 0 0 1];
+        R = R1*R2*R3;
 
-        ITRF(i, :) = X_ICRS';
+        X_ITRF = R*X_ICRS;
+        ITRF(i, :) = X_ITRF;
     
-        % From Local cartesian to Geodetic 
-        [lat, lon, h] = Cart2Geod(X_ICRS(1),X_ICRS(2),X_ICRS(3));
+        % From Local Cartesian to Geodetic 
+        [lat, lon, h] = Cart2Geod(X_ITRF(1),X_ITRF(2),X_ITRF(3));
         ITRF_geod(i, :) = [lat, lon, h];
         
     end 

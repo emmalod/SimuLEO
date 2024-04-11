@@ -19,8 +19,8 @@ set(0,'DefaultFigureWindowStyle','docked');
 %% Read data from txt files and compute position for each second in a day for each satellite
 
 % Define the folder path where your text files are located
-InputFolderPath = 'C:\Users\emmal\Documents\GitHub\SimuLEO\Almanacs040444';
-OutputFolderPath = 'C:\Users\emmal\Documents\GitHub\SimuLEO\SatellitePositions040444';
+InputFolderPath = 'C:\Users\emmal\Documents\GitHub\SimuLEO\Almanacs020211';
+OutputFolderPath = 'C:\Users\emmal\Documents\GitHub\SimuLEO\SatellitePositions020211';
 
 % List all files in the folder
 files = dir(fullfile(InputFolderPath, '*.txt'));
@@ -43,7 +43,7 @@ for i = 1:length(files)
     [OrbitRadius,OrbitInclination,M0,Omega0] = ReadData(InputFilePath);
 
     % Compute ITRF positions each second of the day
-    [ITRF_geod, ORS, ICRS] = ITRF_positions(t,t_0,t_end,D_t,OrbitRadius,OrbitInclination,M0,Omega0);
+    [ITRF_geod, ORS, ICRS, ITRF] = ITRF_positions(t,t_0,t_end,D_t,OrbitRadius,OrbitInclination,M0,Omega0);
 
     % Save position matrix in a txt file in the output folder
     SavePositions(ITRF_geod, InputFileName, OutputFolderPath);
@@ -106,6 +106,47 @@ save solution2.mat
 Data = load('ORS.mat');
 DataField = fieldnames(Data);
 writematrix('ORS.txt', Data.(DataField{1}));
+
+%% Plot ORS last satellite
+
+figure;
+plot(ORS(:,1), ORS(:,2));
+title('Coordinates in ORS of satellite LEO0202');
+xlabel('x ORS');
+ylabel('y ORS');
+%xlim([1 t(end)]);
+
+%% Plot ICRS last satellite
+
+figure;
+plot(ICRS(:,1), ICRS(:,2));
+title('Coordinates in IRCS of satellite LEO0202');
+xlabel('x ICRS');
+ylabel('y ICRS');
+%xlim([1 t(end)]);
+
+%% Plot ITRF last satellite
+
+figure;
+plot(ITRF(:,1), ITRF(:,2));
+title('Coordinates in ITRF of satellite LEO0202');
+xlabel('x ITRF');
+ylabel('y ITRF');
+%xlim([1 t(end)]);
+
+%% Plot ITRF_geod last satellite
+
+ITRF_geod_deg_lat = ITRF_geod(:,1)*180/pi;
+ITRF_geod_deg_long = ITRF_geod(:,2)*180/pi;
+
+figure;
+%plot(ITRF_geod(:,1), ITRF_geod(:,2));
+geoshow(ITRF_geod(:,1)*180/pi,ITRF_geod(:,2)*180/pi, 'DisplayType', 'line', 'MarkerEdgeColor', 'green');
+title('Coordinates in ITRF_geod of satellite LEO0202');
+xlabel('x ITRF');
+ylabel('y ITRF');
+%xlim([1 t(end)]);
+
 
 
 
