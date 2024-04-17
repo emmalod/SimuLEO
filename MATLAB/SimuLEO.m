@@ -19,8 +19,8 @@ set(0,'DefaultFigureWindowStyle','docked');
 %% Read data from txt files and compute position for each second in a day for each satellite
 
 % Define the folder path where your text files are located
-InputFolderPath = 'C:\Users\emmal\Documents\GitHub\SimuLEO\Almanacs010180';
-OutputFolderPath = 'C:\Users\emmal\Documents\GitHub\SimuLEO\SatellitePositions010180';
+InputFolderPath = 'C:\Documenti\GitHub\LEO_orbits_estimation\Almanacs010180';
+OutputFolderPath = 'C:\Documenti\GitHub\LEO_orbits_estimation\SatellitePositions010180';
 
 % List all files in the folder
 files = dir(fullfile(InputFolderPath, '*.txt'));
@@ -49,13 +49,6 @@ for i = 1:length(files)
     SavePositions(ITRF_geod, InputFileName, OutputFolderPath);
 
 end
-
-%% esempio
-
-subplot(1,2,1);
-plot(ITRF_geod(1:1000:end,1)*180/pi, 'o')
-subplot(1,2,2);
-plot(ITRF_geod(1:1000:end,2)*180/pi, 'o')
 
 
 %% Plot satellite's daily trajectory with basemap
@@ -110,7 +103,7 @@ writematrix('ORS.txt', Data.(DataField{1}));
 %% Plot ORS last satellite
 
 figure;
-plot(ORS(:,1), ORS(:,2));
+plot(ORS(:,1), ORS(:,2),'*');
 title('Coordinates in ORS of satellite LEO0202');
 xlabel('x ORS');
 ylabel('y ORS');
@@ -125,25 +118,52 @@ xlabel('x ICRS');
 ylabel('y ICRS');
 %xlim([1 t(end)]);
 
-%% Plot ITRF last satellite
+%% Plot X_ITRF last satellite wrt time 
 
 figure;
-plot(ITRF(:,1), ITRF(:,2));
+plot(ITRF(1:60,1),t(1:60),'-');
 title('Coordinates in ITRF of satellite LEO0202');
 xlabel('x ITRF');
-ylabel('y ITRF');
-%xlim([1 t(end)]);
+ylabel('time');
+
+%% Plot Y_ITRF last satellite wrt time 
+
+figure;
+plot(ITRF(1:60,2),t(1:60),'-');
+title('Coordinates in ITRF of satellite LEO0202');
+xlabel('y ITRF');
+ylabel('time');
+
+%% Plot X_ITRF, Y_ITRF in time 
+plot3(ITRF(1:60,1),ITRF(1:60,2),t(1:60));
+xlabel('x ITRF');
+ylabel('y ITRF')
+zlabel('time');
+
+hold on;
+%Plot X_ITRF_geod, Y_ITR_geod in time 
+plot3(ITRF(1:60,1),ITRF(1:60,2),t(1:60));
+xlabel('x ITRF');
+ylabel('y ITRF')
+zlabel('time');
 
 %% Plot ITRF_geod last satellite
 
-ITRF_geod_deg_lat = ITRF_geod(:,1)*180/pi;
-ITRF_geod_deg_long = ITRF_geod(:,2)*180/pi;
+ITRF_geod_deg_lat = ITRF_geod(:,1);
+ITRF_geod_deg_long = ITRF_geod(:,2);
+
+plot3(ITRF_geod_deg_lat(1:60),ITRF_geod_deg_long(1:60),t(1:60));
+xlabel('x ITRF');
+ylabel('y ITRF')
+zlabel('time');
+%%
 
 figure;
 
 ax = axesm ('eqdcylin', 'Frame', 'on', 'Grid', 'on', 'LabelUnits', 'degrees', 'MeridianLabel', 'on', 'ParallelLabel', 'on', 'MLabelParallel', 'south');
 geoshow('landareas.shp', 'FaceColor', 'black');
 hold on
+%geoshow(ITRF_geod(1000,1)*180/pi,ITRF_geod(1000,2)*180/pi, 'DisplayType', 'line', 'MarkerEdgeColor', 'green');
 geoshow(ITRF_geod(1:3600*2,1)*180/pi,ITRF_geod(1:3600*2,2)*180/pi, 'DisplayType', 'point', 'MarkerEdgeColor', 'green');
 title('Coordinates in ITRF_geod of satellite LEO0202');
 xlabel('x ITRF');
