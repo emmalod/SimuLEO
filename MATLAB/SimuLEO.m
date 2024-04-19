@@ -56,7 +56,7 @@ ax = axesm ('eqdcylin', 'Frame', 'on', 'Grid', 'on', 'LabelUnits', 'degrees', 'M
 geoshow('landareas.shp', 'FaceColor', 'black');
 hold on
 geoshow(ITRF_geod(:,1),ITRF_geod(:,2), 'DisplayType', 'point', 'MarkerEdgeColor', 'green');
-title('Coordinates in ITRF_geod of satellite LEO0202');
+title('Groundtrack of satellite LEO0202');
 xlabel('longitude');
 ylabel('latitude');
 
