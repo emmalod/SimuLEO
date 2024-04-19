@@ -30,11 +30,13 @@ function [ITRF_geod, ORS, ITRF] = ITRF_positions(t,t_0,t_end,D_t,r,o_i,M0,Omega0
     x_t = zeros(1,length(t));
     y_t = zeros(1,length(t));
     W = zeros(1,length(t));
-    %ORS = zeros(length(t), 3);
     
+    % Convert radius in meters
+    r = r*1000; %(m)
+
     % Compute the mean angular velocity
     n = sqrt(GMe/r^3); 
-    
+
     % Fill the previous vectors
     i = 1;
     for Dt = t_0 : D_t : (t_end - t_0)      % Dt is the counter
@@ -70,10 +72,22 @@ function [ITRF_geod, ORS, ITRF] = ITRF_positions(t,t_0,t_end,D_t,r,o_i,M0,Omega0
     
         % From global Cartesian to Geodetic 
         [lat, lon, h] = Cart2Geod(X_ITRF(1),X_ITRF(2),X_ITRF(3));
+        
+        % From radiants to degrees
+        lat = lat*180/pi;
+        lon = lon*180/pi;
+
+        % Rephase latitude in [-90;90] interval
+        if lat > 90
+           lat = lat - 180;
+        end
+
+        if lat < -90
+           lat = lat + 180;
+        end
+
         ITRF_geod(i, :) = [lat, lon, h];
         
     end 
-
-    
 
 end
