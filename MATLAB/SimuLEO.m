@@ -19,8 +19,8 @@ set(0,'DefaultFigureWindowStyle','docked');
 %% Read data from txt files and compute position for each second in a day for each satellite
 
 % Define the folder path where your text files are located
-InputFolderPath = 'C:\Users\emmal\Documents\GitHub\SimuLEO\Almanacs040444';
-OutputFolderPath = 'C:\Users\emmal\Documents\GitHub\SimuLEO\SatellitePositions040444';
+InputFolderPath = 'C:\Users\emmal\Documents\GitHub\SimuLEO\Almanacs010180';
+OutputFolderPath = 'C:\Users\emmal\Documents\GitHub\SimuLEO\SatellitePositions010180';
 
 % List all files in the folder
 files = dir(fullfile(InputFolderPath, '*.txt'));
@@ -164,7 +164,7 @@ ax = axesm ('eqdcylin', 'Frame', 'on', 'Grid', 'on', 'LabelUnits', 'degrees', 'M
 geoshow('landareas.shp', 'FaceColor', 'black');
 hold on
 %geoshow(ITRF_geod(1000,1)*180/pi,ITRF_geod(1000,2)*180/pi, 'DisplayType', 'line', 'MarkerEdgeColor', 'green');
-geoshow(ITRF_geod(1:3600,1),ITRF_geod(1:3600,2), 'DisplayType', 'point', 'MarkerEdgeColor', 'green');
+geoshow(ITRF_geod(:,1),ITRF_geod(:,2), 'DisplayType', 'point', 'MarkerEdgeColor', 'green');
 title('Coordinates in ITRF_geod of satellite LEO0202');
 xlabel('longitude');
 ylabel('latitude');
