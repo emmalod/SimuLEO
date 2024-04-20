@@ -1,5 +1,0 @@
-SatelliteName LEO0104
-OrbitRadius 8500
-OrbitInclination 44
-M0 270.0
-Omega0 0.0

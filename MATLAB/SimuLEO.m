@@ -19,8 +19,8 @@ set(0,'DefaultFigureWindowStyle','docked');
 %% Read data from txt files and compute position for each second in a day for each satellite
 
 % Define the folder path where your text files are located
-InputFolderPath = 'C:\Users\emmal\Documents\GitHub\SimuLEO\Almanacs010180';
-OutputFolderPath = 'C:\Users\emmal\Documents\GitHub\SimuLEO\SatellitePositions010180';
+InputFolderPath = 'C:\Users\emmal\Documents\GitHub\SimuLEO\Almanacs050530';
+OutputFolderPath = 'C:\Users\emmal\Documents\GitHub\SimuLEO\SatellitePositions050530';
 
 % List all files in the folder
 files = dir(fullfile(InputFolderPath, '*.txt'));

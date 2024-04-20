@@ -1,5 +1,0 @@
-SatelliteName LEO0101
-OrbitRadius 8500
-OrbitInclination 11
-M0 0.0
-Omega0 0.0

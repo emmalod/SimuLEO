@@ -16,7 +16,7 @@ function [] = SavePositions(PositionMatrix,file_name, OutputFolderPath)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     % Define the file name for the output text file
-    FileName = strcat('Position', file_name);
+    FileName = file_name;
     
     % Create the full file path
     FilePath = fullfile(OutputFolderPath, FileName);

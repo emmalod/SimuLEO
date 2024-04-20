@@ -1,0 +1,5 @@
+SatelliteName LEO0405
+OrbitRadius 7180
+OrbitInclination 30
+M0 331.2
+Omega0 108.0
