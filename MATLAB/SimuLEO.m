@@ -14,13 +14,13 @@ clear
 close all
 clc
 
-set(0,'DefaultFigureWindowStyle','docked');
+%set(0,'DefaultFigureWindowStyle','docked');
 
 %% Read data from txt files and compute position for each second in a day for each satellite
 
 % Define the folder path where your text files are located
-InputFolderPath = 'C:\Documenti\GitHub\LEO_orbits_estimation\Almanacs040480';
-OutputFolderPath = 'C:\Documenti\GitHub\LEO_orbits_estimation\SatellitePositions040480';
+InputFolderPath = 'C:\Users\emmal\Documents\GitHub\SimuLEO\Almanacs040470';
+OutputFolderPath = 'C:\Users\emmal\Documents\GitHub\SimuLEO\SatellitePositions040470';
 
 % List all files in the folder
 files = dir(fullfile(InputFolderPath, '*.txt'));

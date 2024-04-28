@@ -22,6 +22,7 @@ function [] = SavePositions(PositionMatrix,file_name, OutputFolderPath)
     FilePath = fullfile(OutputFolderPath, FileName);
     
     % Save the position matrix to a text file
-    writematrix(PositionMatrix, FilePath,'Delimiter',' ')
+    %writematrix(PositionMatrix, FilePath,'Delimiter',' ')
+    save(FilePath, 'PositionMatrix', "-ascii","-double","-tabs");
 
 end

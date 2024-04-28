@@ -1,0 +1,5 @@
+SatelliteName LEO0102
+OrbitRadius 7180
+OrbitInclination 65
+M0 90.0
+Omega0 0.0
