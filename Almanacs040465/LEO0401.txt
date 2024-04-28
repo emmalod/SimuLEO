@@ -1,5 +1,0 @@
-SatelliteName LEO0401
-OrbitRadius 7180
-OrbitInclination 65
-M0 67.5
-Omega0 135.0

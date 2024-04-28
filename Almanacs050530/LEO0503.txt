@@ -1,5 +1,0 @@
-SatelliteName LEO0503
-OrbitRadius 7180
-OrbitInclination 30
-M0 201.6
-Omega0 144.0
