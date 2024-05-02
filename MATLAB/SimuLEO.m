@@ -43,7 +43,7 @@ for i = 1:length(files)
     [OrbitRadius,OrbitInclination,M0,Omega0] = ReadData(InputFilePath);
 
     % Compute ITRF positions each second of the day
-    [ITRF_geod, ORS, ITRF] = ITRF_positions(t,t_0,t_end,D_t,OrbitRadius,OrbitInclination,M0,Omega0);
+    [ITRF_geod] = ITRF_positions(t,t_0,t_end,D_t,OrbitRadius,OrbitInclination,M0,Omega0);
 
     % Save position matrix in a txt file in the output folder
     SavePositions(ITRF_geod, InputFileName, OutputFolderPath);

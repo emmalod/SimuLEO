@@ -4,22 +4,18 @@ function [] = SimuLEO_f(InputFolderPath,OutputFolderPath)
 % Geoinformatics Project - Positioning and Location Based Services
 % A.A. 2023/2024
 %
-% SimuLEO
+% Input: 
+% InputFolderPath  --> path of the folder in which input txt files are read
+% OutputFolderPath --> path of the folder in which output txt files are written
 %
-% Angelica Iseni, Emma Lodetti
-%
-% References:
-% Positioning and Location Based Services Laboratory a.y. 2022/2023
+% This function takes as input the path of the folder in which txt files of
+% satellites parameters are located (InputFolderPath), it makes a list of
+% these files and computes the positions of the satellites in each second
+% for 24 hours. At the end, it writes positions computed in txt files in
+% the folder located in OutputFolderPath.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     % Read data from txt files and compute position for each second in a day for each satellite
-    
-    % Define the folder path where your text files are located
-    %InputFolderPath = 'C:\Users\emmal\Documents\GitHub\SimuLEO\Almanacs040470';
-    %OutputFolderPath = 'C:\Users\emmal\Documents\GitHub\SimuLEO\SatellitePositions040470';
-    
-    %InputFolderPath(strfind(InputFolderPath,'/'))='\';
-    %OutputFolderPath(strfind(OutputFolderPath,'/'))='\';
 
     % List all files in the folder
     files = dir(fullfile(InputFolderPath, '*.txt'));
@@ -42,7 +38,7 @@ function [] = SimuLEO_f(InputFolderPath,OutputFolderPath)
         [OrbitRadius,OrbitInclination,M0,Omega0] = ReadData(InputFilePath);
     
         % Compute ITRF positions each second of the day
-        [ITRF_geod, ORS, ITRF] = ITRF_positions(t,t_0,t_end,D_t,OrbitRadius,OrbitInclination,M0,Omega0);
+        [ITRF_geod] = ITRF_positions(t,t_0,t_end,D_t,OrbitRadius,OrbitInclination,M0,Omega0);
     
         % Save position matrix in a txt file in the output folder
         SavePositions(ITRF_geod, InputFileName, OutputFolderPath);

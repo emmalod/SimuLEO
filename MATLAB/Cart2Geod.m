@@ -5,10 +5,10 @@ function [Phi,Lambda,h] = Cart2Geod(X,Y,Z)
 % A.A. 2023/2024
 %
 % Input: 
-% [x,y,z]        --> cartesian coordinates of the interest point
+% [x,y,z]        --> cartesian coordinates of the point
 % 
 % Output: 
-% [Phi,Lambda,h] --> geodethic coordinates of the interest point
+% [Phi,Lambda,h] --> geodethic coordinates of the point
 %
 % This function transforms the coordinates from cartesian to geodethic,
 % receiving as input the cartesian coordinates of the point of interest 
