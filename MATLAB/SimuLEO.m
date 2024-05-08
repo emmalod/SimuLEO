@@ -2,12 +2,10 @@
 % Geoinformatics Project - Positioning and Location Based Services
 % A.A. 2023/2024
 %
-% SimuLEO
+% SimuLEO - Low Earth Orbit satellites Simulator
 %
 % Angelica Iseni, Emma Lodetti
 %
-% References:
-% Positioning and Location Based Services Laboratory a.y. 2022/2023
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 clear

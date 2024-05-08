@@ -20,13 +20,13 @@ function [OrbitRadius,OrbitInclination,M0,Omega0] = ReadData(files_path)
 
     fid = fopen(files_path, 'r');
 
-    % Leggi i dati dal file
+    % Read data from file
     data = fscanf(fid, '%*s %f');
     
-    % Chiudi il file
+    % Close file
     fclose(fid);
     
-    % Estrai le variabili
+    % Variable extraction
     OrbitRadius = data(1);
     OrbitInclination = data(2);
     M0 = data(3);
