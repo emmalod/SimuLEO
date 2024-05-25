@@ -1,4 +1,4 @@
-%% position script
+%% ITRF positions script
 
 InputFolderPath = 'C:\Users\emmal\Documents\GitHub\SimuLEO\Almanacs040470';
 OutputFolderPath = 'C:\Users\emmal\Documents\GitHub\SimuLEO\SatellitePositions040470';
@@ -15,4 +15,4 @@ z_0 = 0;
 InputFolderPath = 'C:\Users\emmal\Documents\GitHub\SimuLEO\SatellitePositions040470';
 OutputFolderPath = 'C:\Users\emmal\Documents\GitHub\SimuLEO\mask_prova';
 
-SimuLEO_pdop(InputFolderPath,OutputFolderPath, t,x_0,y_0,z_0)
+PDOP = SimuLEO_pdop(InputFolderPath,OutputFolderPath,t,x_0,y_0,z_0);
