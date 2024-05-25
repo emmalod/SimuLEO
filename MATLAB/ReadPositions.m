@@ -1,6 +1,6 @@
 function [phi_s,lambda_s,h_s] = ReadPositions(files_path)
 
-fid = fopen(files_path, 'r');
+    fid = fopen(files_path, 'r');
 
     % Read data from file
     data = fscanf(fid, '%f %f %f', [3 Inf]);

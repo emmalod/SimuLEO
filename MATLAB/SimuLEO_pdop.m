@@ -1,4 +1,4 @@
-function [] = SimuLEO_pdop(InputFolderPath, t,x_0,y_0,z_0)
+function [] = SimuLEO_pdop(InputFolderPath,OutputFolderPath, t,x_0,y_0,z_0)
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Geoinformatics Project - Positioning and Location Based Services
@@ -15,11 +15,14 @@ function [] = SimuLEO_pdop(InputFolderPath, t,x_0,y_0,z_0)
 % the folder located in OutputFolderPath.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% List all files in the folder
+    % List all files in the folder
     files = dir(fullfile(InputFolderPath, '*.txt')); % InputFolderPath = SatellitePosition folder
     
+    count = 0;
+
     % Loop through each file in the folder
     for i = 1:length(files)
+        
         % Get the file name
         InputFileName = files(i).name;
     
@@ -32,12 +35,19 @@ function [] = SimuLEO_pdop(InputFolderPath, t,x_0,y_0,z_0)
         % Convert from geodetic coordinates to cartesian coordinates
         [x_s,y_s,z_s] = Geod2Cart(phi_s,lambda_s,h_s);
     
-        % Compute ITRF positions each second of the day
-        %[ITRF_geod] = ITRF_positions(t,t_0,t_end,D_t,OrbitRadius,OrbitInclination,M0,Omega0);
+        % Compute local coordinates of the satellite with respect to the
+        % coordinates of the point in time
+        [loc_coords] = local_coordinates(x_0,y_0,z_0,x_s,y_s,z_s);
     
-        % Save position matrix in a txt file in the output folder
-        %SavePositions(ITRF_geod, InputFileName, OutputFolderPath);
-        
+        % Save mask SATELLITE IN VIEW / SATELLITE NOT IN VIEW
+        SaveMask(loc_coords, InputFileName, OutputFolderPath);
+
+        if (loc_coord(t,3)) >= 0
+            count = count + 1;
+            norm_LC = norm(loc_coords(t,3));
+            LC_normalized = - (loc_coords(t,3) / norm_LC);
+        end
+
     end
 
 end

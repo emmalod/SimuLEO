@@ -1,4 +1,4 @@
-function [] = SavePositions(PositionMatrix, file_name, OutputFolderPath)
+function [] = SaveMask(local_coordinates,file_name, OutputFolderPath)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Geoinformatics Project - Positioning and Location Based Services
@@ -21,7 +21,16 @@ function [] = SavePositions(PositionMatrix, file_name, OutputFolderPath)
     % Create the full file path
     FilePath = fullfile(OutputFolderPath, FileName);
     
+    mask = zeros(length(local_coordinates(:,3)));
+
+    % Create mask SATELLITE IN VIEW / SATELLITE NOT IN VIEW
+    for i = 1 : length(local_coordinates(:,3))
+        if local_coordinates(i,3) >= 0
+            mask(i) = 1;
+        end
+    end
+
     % Save the position matrix to a text file
-    save(FilePath, 'PositionMatrix', "-ascii","-double","-tabs");
+    save(FilePath, 'mask', "-ascii","-double","-tabs");
 
 end
