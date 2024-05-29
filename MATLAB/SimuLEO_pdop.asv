@@ -22,8 +22,9 @@ function [pdop] = SimuLEO_pdop(InputFolderPath,OutputFolderPath,t,phi_0,lambda_0
 % satellites positions are located (InputFolderPath) and loops through them, 
 % computing for each satellite the local coordinates and determining which satellite
 % is in view and which not. At the end, it computes the pdop indicator of the constellation,
-% considering the satellites in view at a specific epoch from a specific point on the
-% Earth surface selected by the user.
+% considering for
+% the satellites that result in view at that specific epoch from that
+% specific point on the Earth surface. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     % Convert position of the point in Cartesian
@@ -32,7 +33,6 @@ function [pdop] = SimuLEO_pdop(InputFolderPath,OutputFolderPath,t,phi_0,lambda_0
     % List all files in the folder
     files = dir(fullfile(InputFolderPath, '*.txt')); % SatellitePosition folder
 
-    % Initialize matrices and vectors
     A = [];
     LC_normalized = [];
 
@@ -61,14 +61,13 @@ function [pdop] = SimuLEO_pdop(InputFolderPath,OutputFolderPath,t,phi_0,lambda_0
         % Check if satellite i is or isn't in view at given time t and
         % normalize its coordinates
         if (loc_coords(t,3)) >= 0
-            norm_LC = norm(loc_coords(t,:)); % L2 norm
+            norm_LC = norm(loc_coords(t,:));
             LC_normalized = - (loc_coords(t,:) / norm_LC);
             A = [A ; LC_normalized];
         end
 
     end
-    
-    % Compute pdop
+
     A = [A ones(size(A,1),1)];
     N = A'*A;
     K = inv(N);

@@ -3,22 +3,29 @@ function [loc_coords] = local_coordinates(x_0,y_0,z_0,x_s,y_s,z_s)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Geoinformatics Project - Positioning and Location Based Services
 % A.A. 2023/2024
-% 
-% Input:
-% t         --> vector of times
-% t_0       --> starting time 
-% t_end     --> ending time 
-% D_t       --> time discretization step 
-% r         --> orbit radius
-% o_i       --> orbit inclination 
-% M0        --> mean anomaly
-% Omega0    --> starting rigth ascension of the ascending node 
+%
+% Input: 
+% x_0              --> cartesian coordinate in x direction of the point on
+%                      the Earth surface selected by the user
+% y_0              --> cartesian coordinate in y direction of the point on
+%                      the Earth surface selected by the user
+% z_0              --> cartesian coordinate in z direction of the point on
+%                      the Earth surface selected by the user
+% x_s              --> cartesian coordinate in x direction of the satellite
+%                      of interest 
+% y_s              --> cartesian coordinate in y direction of the satellite
+%                      of interest 
+% z_s              --> cartesian coordinate in z direction of the satellite
+%                      of interest
 %
 % Output: 
-% ITRF_geod --> coordinates of the point of interest in ITRF geodethic 
-%   
-% This function converts the coordinates of a point from the Orbital
-% Reference System to the ITRF geodethic.
+% loc_coords       --> local_coordinates of the considered satellite with
+%                      respect to the observer
+%
+% This function takes as input the coordinates of a considered satellite
+% and the coordinates of a point on the Earth surface selected by the user
+% and it computes the local coordinates of the satellite with respect to
+% that point. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     % Convert point coordinates from cartesian to geodetic
