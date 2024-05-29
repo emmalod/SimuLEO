@@ -29,7 +29,7 @@ function [loc_coords] = local_coordinates(x_0,y_0,z_0,x_s,y_s,z_s)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     % Convert point coordinates from cartesian to geodetic
-    [phi_0,lambda_0,h_0] = Cart2Geod(x_0,y_0,z_0);
+    [phi_0,lambda_0,~] = Cart2Geod(x_0,y_0,z_0);
 
     R = [-sin(lambda_0) cos(lambda_0) 0; -sin(phi_0)*cos(lambda_0) -sin(phi_0)*sin(lambda_0) cos(phi_0); cos(phi_0)*cos(lambda_0) cos(phi_0)*sin(lambda_0) sin(phi_0)];
 
