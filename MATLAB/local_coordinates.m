@@ -1,16 +1,14 @@
-function [loc_coords] = local_coordinates(x_0,y_0,z_0,x_s,y_s,z_s)
+function [loc_coords] = local_coordinates(phi_0,lambda_0,x_s,y_s,z_s)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Geoinformatics Project - Positioning and Location Based Services
 % A.A. 2023/2024
 %
 % Input: 
-% x_0              --> cartesian coordinate in x direction of the point on
-%                      the Earth surface selected by the user
-% y_0              --> cartesian coordinate in y direction of the point on
-%                      the Earth surface selected by the user
-% z_0              --> cartesian coordinate in z direction of the point on
-%                      the Earth surface selected by the user
+% phi_0            --> latitude of a point on Earth surface selected by the
+%                      user
+% lambda_0         --> longitude of a point on Earth surface selected by the
+%                      user
 % x_s              --> cartesian coordinate in x direction of the satellite
 %                      of interest 
 % y_s              --> cartesian coordinate in y direction of the satellite
@@ -28,8 +26,8 @@ function [loc_coords] = local_coordinates(x_0,y_0,z_0,x_s,y_s,z_s)
 % that point. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-    % Convert point coordinates from cartesian to geodetic
-    [phi_0,lambda_0,~] = Cart2Geod(x_0,y_0,z_0);
+    % Convert point coordinates from geodetic to cartesian
+    [x_0,y_0,z_0] = Geod2Cart(phi_0,lambda_0,0);
 
     R = [-sin(lambda_0) cos(lambda_0) 0; -sin(phi_0)*cos(lambda_0) -sin(phi_0)*sin(lambda_0) cos(phi_0); cos(phi_0)*cos(lambda_0) cos(phi_0)*sin(lambda_0) sin(phi_0)];
 

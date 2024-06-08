@@ -9,9 +9,9 @@ function [pdop] = SimuLEO_pdop(InputFolderPath,OutputFolderPath,t,phi_0,lambda_0
 % OutputFolderPath --> path of the folder in which output txt files are written
 % t                --> time selected by the user for which the positions of
 %                      the satellites should be computed 
-% Phi_0            --> latitude of a point on Earth surface selected by the
+% phi_0            --> latitude of a point on Earth surface selected by the
 %                      user
-% Lambda_0         --> longitude of a point on Earth surface selected by the
+% lambda_0         --> longitude of a point on Earth surface selected by the
 %                      user
 %
 % Output: 
@@ -25,9 +25,6 @@ function [pdop] = SimuLEO_pdop(InputFolderPath,OutputFolderPath,t,phi_0,lambda_0
 % considering the satellites in view at a specific epoch from a specific point on the
 % Earth surface selected by the user.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-    % Convert position of the point in Cartesian
-    [x_0,y_0,z_0] = Geod2Cart(phi_0,lambda_0,0);
 
     % List all files in the folder
     files = dir(fullfile(InputFolderPath, '*.txt')); % SatellitePosition folder
@@ -53,7 +50,7 @@ function [pdop] = SimuLEO_pdop(InputFolderPath,OutputFolderPath,t,phi_0,lambda_0
 
         % Compute local coordinates of the satellite with respect to the
         % coordinates of the point in time
-        [loc_coords] = local_coordinates(x_0,y_0,z_0,x_s,y_s,z_s);
+        [loc_coords] = local_coordinates(phi_0,lambda_0,x_s,y_s,z_s);
 
         % Save mask SATELLITE IN VIEW / SATELLITE NOT IN VIEW
         SaveMask(loc_coords, InputFileName, OutputFolderPath);

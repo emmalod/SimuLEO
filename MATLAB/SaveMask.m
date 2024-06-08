@@ -28,6 +28,8 @@ function [] = SaveMask(local_coordinates, file_name, OutputFolderPath)
     for i = 1 : length(local_coordinates(:,3))
         if local_coordinates(i,3) >= 0
             mask(i) = 1;
+        else
+            mask(i) = 0;
         end
     end
 
