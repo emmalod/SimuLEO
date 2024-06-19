@@ -26,7 +26,7 @@ function [] = SaveMask(local_coordinates, file_name, OutputFolderPath)
 
     % Create mask SATELLITE IN VIEW / SATELLITE NOT IN VIEW
     for i = 1 : length(local_coordinates(:,3))
-        if local_coordinates(i,3) >= 0
+        if local_coordinates(i,3) > 0
             mask(i) = 1;
         else
             mask(i) = 0;

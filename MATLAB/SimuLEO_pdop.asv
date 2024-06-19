@@ -57,14 +57,12 @@ function [pdop] = SimuLEO_pdop(InputFolderPath,OutputFolderPath,t,phi0,lambda0)
         [loc_coords] = local_coordinates(phi_0,lambda_0,x_s,y_s,z_s);
 
         % Compute altitude of the satellites
-        [eta,eta_deg] = sat_altitude(loc_coords);
 
         % Save mask SATELLITE IN VIEW / SATELLITE NOT IN VIEW
         SaveMask(loc_coords, InputFileName, OutputFolderPath);
 
         % Check if satellite i is or isn't in view at given time t and
         % normalize its coordinates
-
         if (loc_coords(t,3)) >= 0
             norm_LC = norm(loc_coords(t,:)); % L2 norm
             LC_normalized = - (loc_coords(t,:) / norm_LC);
