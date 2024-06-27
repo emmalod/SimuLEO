@@ -73,7 +73,7 @@ function [pdop] = SimuLEO_pdop(InputFolderPath,OutputFolderPath,t,phi0,lambda0)
 
     end
     
-    % Compute pdop
+    % Compute pplotipdop
     A = [A ones(size(A,1),1)];
     N = A'*A;
     K = inv(N);

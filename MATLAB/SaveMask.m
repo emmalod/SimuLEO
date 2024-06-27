@@ -33,6 +33,8 @@ function [] = SaveMask(local_coordinates, file_name, OutputFolderPath)
         end
     end
 
+    spy(mask);
+
     % Save the position matrix to a text file
     save(FilePath, 'mask', "-ascii", "-tabs");
 

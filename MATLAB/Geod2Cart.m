@@ -18,6 +18,10 @@ function [X,Y,Z] = Geod2Cart(phi,lambda,h)
     e = 0.0818191908426215; %eccentricy
     b = a*sqrt(1-e^2); %minor semiaxis
     
+    % Convert from degree to radiants
+    phi = phi*pi/180;
+    lambda = lambda*pi/180;
+
     % Initialize coordinates vectors
     X = zeros(length(phi), 1);
     Y = zeros(length(phi), 1);
