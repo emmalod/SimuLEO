@@ -57,7 +57,7 @@ function [pdop] = SimuLEO_pdop(InputFolderPath,OutputFolderPath,t,phi0,lambda0)
         [loc_coords] = local_coordinates(phi_0,lambda_0,x_s,y_s,z_s);
 
         % Compute altitude of the satellites
-        [eta,eta_deg] = sat_altitude(loc_coords);
+        %[eta,eta_deg] = sat_altitude(loc_coords);
 
         % Save mask SATELLITE IN VIEW / SATELLITE NOT IN VIEW
         SaveMask(loc_coords, InputFileName, OutputFolderPath);
@@ -73,7 +73,7 @@ function [pdop] = SimuLEO_pdop(InputFolderPath,OutputFolderPath,t,phi0,lambda0)
 
     end
     
-    % Compute pplotipdop
+    % Compute pdop
     A = [A ones(size(A,1),1)];
     N = A'*A;
     K = inv(N);
