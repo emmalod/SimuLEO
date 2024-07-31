@@ -46,7 +46,7 @@ The SimuLEO dashboard is split into several sections, each offering different fu
 
 These different tasks can be accomplished in sequence, or independently. Indeed, in each step, the user will be prompted to select a constellation from the saved designs to perform the chosen task.
 
-## Our repository
+# Our repository
 
 In the repository can be found the following files:
 - **SimuLEO.ipynb:** The Jupyter Dashboard of the project.
