@@ -14,16 +14,6 @@ Additionally, SimuLEO includes functionality for satellite visibility analysis. 
 
 By combining these features, SimuLEO offers a complete platform for simulating and analyzing LEO satellite constellations and orbits, supporting and advancing research in satellite-based positioning systems. This tool could play a crucial role in developing new methods and applications within the field of satellite navigation and positioning.
 
-# How it works
-
-The SimuLEO dashboard is split into several sections, each offering different functions for analyzing various aspects of the designed constellation.
-- **Constellation creation:** the user designs its constellation of satellites, by entering the number of orbital planes of the constellation, the number of satellites per orbital plane, and the inclination of the orbital planes with respect to the reference equatorial plane.
-- **Ground tracks plot:** the user can plot the constellation groundntracks both in 2D and 3D plots.
-- **PDOP computation:** the user can compute the PDOP index with respect to a chosen position and time of the day.
-- **Satellites Visibility Chart:** the user can analyze the designed constellation's coverage through the visibility table's usage.
-
-These different tasks can be accomplished in sequence, or independently. Indeed, in each step, the user will be prompted to select a constellation from the saved designs to perform the chosen task.
-
 # Getting started
 
 To run SimuLEO locally, Python, version 3.11.5, and GNU Octave, version 9.1.0 are needed. We suggest to use Anaconda and open a new environment.
@@ -43,6 +33,18 @@ The application requires the following libraries:
 ```bash
 conda install --yes --file requirements.txt
 ```
+
+The tool consists of a Jupyter dashboard, that can be run in an Anaconda environment.
+
+# How it works
+
+The SimuLEO dashboard is split into several sections, each offering different functions for analyzing various aspects of the designed constellation.
+- **Constellation creation:** the user designs its constellation of satellites, by entering the number of orbital planes of the constellation, the number of satellites per orbital plane, and the inclination of the orbital planes with respect to the reference equatorial plane.
+- **Ground tracks plot:** the user can plot the constellation groundntracks both in 2D and 3D plots.
+- **PDOP computation:** the user can compute the PDOP index with respect to a chosen position and time of the day.
+- **Satellites Visibility Chart:** the user can analyze the designed constellation's coverage through the visibility table's usage.
+
+These different tasks can be accomplished in sequence, or independently. Indeed, in each step, the user will be prompted to select a constellation from the saved designs to perform the chosen task.
 
 ## Our repository
 
