@@ -1,4 +1,5 @@
 <img align="right" title="SimuLEO_logo" width="260" src="SimuLOGO_noback.png">
+<!--- <img align="center" title="SimuLEO_cover" src="SimuLEO_cover.png"> --->
 
 # SimuLEO
 
