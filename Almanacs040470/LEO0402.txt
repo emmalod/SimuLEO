@@ -1,4 +1,0 @@
-OrbitRadius 7180
-OrbitInclination 70
-M0 157.5
-Omega0 135.0
