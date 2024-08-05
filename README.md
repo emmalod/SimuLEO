@@ -54,6 +54,6 @@ In the repository can be found the following files:
 - **requirements.txt:** txt file to install the libraries
 - **Almanacs030480, SatellitePositions030480, InViewMask030480:** an example of constellation produced by the tool
 
-# The project
+# About
 
 SimuLEO is a project developed by Emma Lodetti and Angelica Iseni, two final-year students from the Geoinformatics Engineering at Politecnico di Milano. This project was supervised by Professor Ludovico G. A. Biagi in the field of Positioning and Location Based Services.
